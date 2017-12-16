@@ -116,7 +116,7 @@ class WebOsClient(object):
 
     async def register(self):
         """Register wrapper."""
-        logger.debug('register on %s', "ws://{}:{}".format(self.ip, self.port));
+        logger.debug('register on %s', "ws://{}:{}".format(self.ip, self.port))
         async with websockets.connect(
                 "ws://{}:{}".format(self.ip, self.port), 
                 timeout=self.timeout_connect) as websocket:
@@ -128,7 +128,7 @@ class WebOsClient(object):
 
     async def _command(self, msg):
         """Send a command to the tv."""
-        logger.debug('send command to %s', "ws://{}:{}".format(self.ip, self.port));
+        logger.debug('send command to %s', "ws://{}:{}".format(self.ip, self.port))
         async with websockets.connect(
                     "ws://{}:{}".format(self.ip, self.port), 
                     timeout=self.timeout_connect
@@ -266,7 +266,8 @@ class WebOsClient(object):
 
     async def get_muted(self):
         """Get mute status."""
-        return await self.get_audio_status().get('mute')
+        status = await self.get_audio_status()
+        return status.get('mute')
 
     async def set_mute(self, mute):
         """Set mute."""
